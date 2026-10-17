@@ -119,3 +119,11 @@ app.use("/api/admin", require("./routes/admin.routes"));
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://your-vercel-app.vercel.app' // 👈 PUT YOUR NEW VERCEL URL HERE
+  ],
+  credentials: true
+}));
