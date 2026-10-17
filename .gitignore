@@ -1,14 +1,16 @@
-# Database
-# PostgreSQL connection string
-DATABASE_URL="postgresql://postgres:phou@555@localhost:5432/melodystore?sslmode=disable"
+# Dependencies
+node_modules/
 
-# JWT
-JWT_SECRET="your_super_secret_jwt_key_here_change_this_in_production"
-JWT_EXPIRE="7d"
+# Environment variables
+.env
+.env.local
 
-# Server
-PORT=5000
-NODE_ENV=development
+# Logs
+npm-debug.log*
 
-# Frontend URL
-FRONTEND_URL="http://localhost:5173"
+# OS files
+.DS_Store
+Thumbs.db
+
+# Prisma
+prisma/migrations/dev.db
