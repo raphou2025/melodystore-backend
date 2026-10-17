@@ -1,16 +1,16 @@
-const jwt = require('jsonwebtoken');
-const { PrismaClient } = require('@prisma/client');
+const jwt = require("jsonwebtoken");
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
 const verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1];
-    
+    const token = req.headers.authorization?.split(" ")[1];
+
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: 'Access denied. No token provided.'
+        message: "Access denied. No token provided.",
       });
     }
 
@@ -23,15 +23,17 @@ const verifyToken = async (req, res, next) => {
         username: true,
         firstName: true,
         lastName: true,
+        phone: true,
+        avatar: true,
         role: true,
-        isActive: true
-      }
+        isActive: true,
+      },
     });
 
     if (!user || !user.isActive) {
       return res.status(401).json({
         success: false,
-        message: 'User not found or inactive'
+        message: "User not found or inactive",
       });
     }
 
@@ -40,7 +42,7 @@ const verifyToken = async (req, res, next) => {
   } catch (error) {
     return res.status(403).json({
       success: false,
-      message: 'Invalid token'
+      message: "Invalid token",
     });
   }
 };
@@ -50,14 +52,14 @@ const authorize = (...roles) => {
     if (!req.user) {
       return res.status(401).json({
         success: false,
-        message: 'Unauthorized'
+        message: "Unauthorized",
       });
     }
 
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
-        message: `Access denied. Required roles: ${roles.join(', ')}`
+        message: `Access denied. Required roles: ${roles.join(", ")}`,
       });
     }
 
@@ -67,5 +69,5 @@ const authorize = (...roles) => {
 
 module.exports = {
   verifyToken,
-  authorize
+  authorize,
 };

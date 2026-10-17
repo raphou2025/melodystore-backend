@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "hash-legacy-passwords": "node scripts/hash-legacy-passwords.js"
   },
   "keywords": [],
   "author": "",
